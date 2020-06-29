@@ -1,0 +1,39 @@
+@import '~bootstrap';
+@import "~rfs/scss";
+
+.Register {
+
+  &__title {
+    @include font-size(2rem);
+  }
+
+  &__subtitle {
+    @include font-size(1.5rem);
+    color: #333333;
+  }
+
+  &__subtitle {
+    @extend .h4;
+  }
+
+  &__form__error {
+    @extend .text-danger;
+    margin-left: 14px;
+  }
+
+  &__intro-image {
+    max-height: 600px;
+    max-width: 90%;
+  }
+
+  &__submit-btn,
+  &__submit-btn:active,
+  &__submit-btn:focus {
+    @extend .btn;
+    @extend .btn-dark;
+    @extend .w-100;
+    background: #f54555;
+    border-color: #f54555;
+  }
+
+}
