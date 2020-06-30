@@ -33,7 +33,7 @@ function Login() {
 
 	return (
 		<main className="Main containter-fluid">
-			<div className="Login row d-flex justify-content-center">
+			<div className="Login row d-flex justify-content-center mt-5">
 				<div className="card col-11 col-md-4 mt-5">
 					<div className="card-body my-5 d-flex flex-column">
 						<h2 className="Login__title align-self-center">Instagram</h2>

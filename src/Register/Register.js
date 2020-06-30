@@ -77,7 +77,10 @@ function Register() {
 							<div className="form-group text-right">
 							<button type="submit" 
 								className="mt-3 Register__submit-btn" 
-								disabled={isSubmitting || !touched || errors}>
+								disabled={isSubmitting || 
+								!touched.username && !touched.password && !touched.confirmPassword && !touched.email && !touched.agreeToTerms
+								|| errors.username || errors.password || errors.confirmPassword || errors.email || errors.agreeToTerms
+								}>
 									Sign up
 							</button>
 							</div>

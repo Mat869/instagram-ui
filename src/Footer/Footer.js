@@ -4,7 +4,9 @@ import './Footer.scss';
 
 function Footer() {
 	return (
-        <div></div>
+        <div>
+            
+        </div>
 	);
 }
 

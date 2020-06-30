@@ -9,12 +9,14 @@ import {
 import Register from './Register/Register';
 import Login from './Login/Login';
 import PostCreate from './PostCreate/PostCreate';
+import Footer from './Footer/Footer';
 
 function App() {
 
   return (
-    <body className="Main">
+    <body className="Body">
         <Router className="App">
+            <main>
             <Header />
 
             <div className="container mt-4">
@@ -33,8 +35,13 @@ function App() {
                     </Route>
                 </Switch>
             </div>
+            </main>
+            <footer>
+                <Footer />
+            </footer>
         </Router>
     </body>
+    
   );
 }
 
