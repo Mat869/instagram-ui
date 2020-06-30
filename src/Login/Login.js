@@ -1,37 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { LoginSchema } from './login.schema';
+import { useHistory } from 'react-router-dom';
 import config from '../config/index';
 import './Login.scss';
+import { UserContext } from '../user-context';
 
 function Login() {
 
-	const [showError, setError] = useState(false);
+    const { setUser } = useContext(UserContext);
 
-	const submit = async (values) => {
+    const history = useHistory();
 
-		setError(false);
-		
-        const res = await fetch( config.apiUrl + '/users/login', {
+    const [showError, setError] = useState(false);
+
+    const submit = async(values) => {
+
+        setError(false);
+
+        const res = await fetch(config.apiUrl + '/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-			},
-			credentials: "include", // for crossdomain cookies
+            },
+            credentials: "include", // for crossdomain cookies
             body: JSON.stringify(values)
         });
-        if(res.status === 200)  {
-			console.log('Yes');
-        } else if(res.status === 401) {
-			console.log('No');
-			setError(true);
+        if (res.status === 200) {
+            const loggedUser = await res.json();
+            setUser(loggedUser);
+            history.push('/'); // to put in the context the connected user
+        } else if (res.status === 401) {
+            console.log('No');
+            setError(true);
         } else {
             console.log('Unknown error');
         }
         return res;
-	};
+    };
 
-	return (
+    return (
 		<main className="Main containter-fluid">
 			<div className="Login row d-flex justify-content-center">
 				<div className="card col-11 col-md-4 mt-5">
