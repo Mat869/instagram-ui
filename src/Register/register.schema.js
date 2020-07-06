@@ -15,7 +15,7 @@ export const RegisterSchema = Yup.object().shape({
 		.max(16, 'Password is too long')
 		.required('Password is required'),
 	confirmPassword: Yup.string()
-		.required()
+		.required('Confirm your password')
 		.oneOf([Yup.ref("password"), null], "Password must match"),
 	agreeTerms: Yup.boolean()
 		.oneOf([true], 'You must agree to terms')

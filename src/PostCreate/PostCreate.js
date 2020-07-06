@@ -1,21 +1,42 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import React, { useState } from 'react';
+import { ErrorMessage, Formik, Form, Field } from 'formik';
 import { PostCreateSchema } from './createPost.schema';
+import { useHistory } from 'react-router-dom';
 import config from '../config/index';
 
 function PostCreate() {
 
+	const history = useHistory();
+
+	const [showError, setError] = useState(false);
+
+	const buildFromData = (values) => {
+		const data = new FormData();
+		for (const key in values) {
+			data.append(key, values[key]);
+		}
+		return data;
+	}
+
 	const submit = async (values) => {
+
+		setError(false);
+
+		const data = buildFromData(values);
        
         const res = await fetch( config.apiUrl + '/posts', {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-			},
 			credentials: "include",
-            body: JSON.stringify(values)
-        });
-        console.log(res);
+            body: data // the header will be inserted automatically when we put data in body
+		});
+		if(res.status === 201)  {
+            history.push('/');
+        } else if(res.status === 409) {
+            setError(true);
+        } else {
+            console.log('Unknown error');
+        }
+        return res;
 	};
     
     return (
@@ -26,11 +47,14 @@ function PostCreate() {
 					initialValues={{image: '', description: ''}}
 					validationSchema={PostCreateSchema}
 					onSubmit={submit}>
-					{({ isSubmitting }) => (
+					{({ errors, isSubmitting, setFieldValue }) => (
 						<Form className="PostCreate__form mt-5 col-lg-8 px-0" noValidate>
 							<div className="form-group">
 								<label htmlFor="image">Image</label>
-								<Field type="file" id="image" name="image"/>
+								<input type='file' id='image' name='image' onChange={(e) => {
+									setFieldValue('image', e.currentTarget.files[0]) //this is the binary file
+								}} />
+								{ errors.image && <small className="Register__form__error">{errors.image}</small> }
 							</div>
 							<div className="form-group">
 								<label htmlFor="Description">Description</label>
