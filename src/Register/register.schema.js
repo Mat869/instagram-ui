@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import config from '../config/index';
 
 export const RegisterSchema = Yup.object().shape({
 	username: Yup.string()
@@ -28,8 +29,7 @@ const fields = {
 
 async function isTaken(field, value) {
 
-	const res = await fetch(`http://localhost:4000/users/check?${field}=${value}`);
+	const res = await fetch(`${config.apiUrl}/users/check?${field}=${value}`);
 	fields[field][value] = !(await res.json());
-	console.log(fields[field][value]);
 	return fields[field][value];
 }

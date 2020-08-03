@@ -1,0 +1,59 @@
+@import '~bootstrap';
+
+.Backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .modal-box {
+    width: 500px;
+    max-width: 100%;
+    background: #ffffff;
+    padding: 15px;
+  }
+  .PostCreate {
+
+    &__title,
+    &__subtitle {
+      color: #333333;
+    }
+  
+    &__subtitle {
+      @extend .h4;
+    }
+  
+    &__form__error {
+      @extend .text-danger;
+      margin-left: 14px;
+    }
+  
+    &__intro-image {
+      max-height: 600px;
+      max-width: 90%;
+    }
+  
+    &__submit-btn,
+    &__submit-btn:active,
+    &__submit-btn:focus {
+      @extend .btn;
+      @extend .btn-dark;
+      @extend .w-100;
+      background: #f54555;
+      border-color: #f54555;
+    }
+  
+    &__register-link,
+    &__register-link:hover {
+      color: #f54555;
+    }
+  
+  }
+  
+}
+

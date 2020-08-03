@@ -1,0 +1,16 @@
+.AppLoader {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    z-index: 99;
+    text-align: center;
+    padding-top: 50px;
+  
+    &--visible {
+      display: block;
+    }
+  }

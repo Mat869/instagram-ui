@@ -1,25 +1,16 @@
 import React, { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUserCircle} from '@fortawesome/free-solid-svg-icons'; 
+import { Link } from 'react-router-dom';
 import { UserContext } from '../../user-context';
+import Avatar from '../../common/Avatar/Avatar';
 import './MenuAvatar.scss';
-
 function MenuAvatar() {
-
     const { user } = useContext(UserContext);
-
-    
-
-	return (
-            <div className="MenuAvatar">
-                {user.avatar ? <img /> : <FontAwesomeIcon icon={faUserCircle} />}
-                
-            </div>
-	);
+    return (
+        <div className="MenuAvatar">
+        <Link to={`/profile/${user._id}`}>
+            <Avatar size="sm" image={user.avatar} />
+        </Link>
+        </div>
+    );
 }
-/*
-<img src={user && user.avatar ? user.avatar : avatarDefault }
-                    alt={user && user.username}
-/>
-*/
 export default MenuAvatar;

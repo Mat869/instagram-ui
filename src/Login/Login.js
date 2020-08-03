@@ -10,16 +10,13 @@ import './Login.scss';
 function Login() {
 
     const { setUser } = useContext(UserContext);
-
     const history = useHistory();
-
     const [showError, setError] = useState(false);
-
     const submit = async(values) => {
 
         setError(false);
 
-        const res = await fetch(config.apiUrl + '/users/login', {
+        const res = await fetch( config.apiUrl + '/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

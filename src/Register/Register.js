@@ -22,7 +22,7 @@ function Register() {
             body: JSON.stringify(values)
         });
         if(res.status === 201)  {
-            history.push('/login');
+            history.push('/feed');
         } else if(res.status === 409) {
             setError(true);
         } else {
